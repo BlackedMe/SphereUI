@@ -1,0 +1,3 @@
+namespace UpdateHandler{
+  void update();
+};

@@ -1,0 +1,8 @@
+-I
+extern/glfw/include
+-I
+extern/glad/include
+-I
+extern
+-I
+include
