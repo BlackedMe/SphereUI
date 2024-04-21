@@ -4,11 +4,15 @@
 #include "shader.hpp"
 #include "renderer.hpp"
 #include "glfwHandler.hpp"
+#include "shapes.hpp"
+#include "guiComponent.hpp"
+#include "boxButton.hpp"
+#include "baseGui.hpp"
 #include "GLFW/glfw3.h"
 
 void Program::run()
 {
-  GLFWHandler glfwHwnd(1280, 800); 
+  GLFWHandler glfwHwnd(400, 400); 
   glfwHwnd.init();
 
   //renderer
@@ -17,7 +21,10 @@ void Program::run()
   //shader
   Shader shader;
   shader.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
+  
 
+  GUIComponent *button = new BoxButton(0.5f, 0.5f, new BaseGUI);
+  button->create();
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))
   {
@@ -29,7 +36,8 @@ void Program::run()
     UpdateHandler::update();
 
     shader.useProgram();
-
+    
+    button->render();
     renderer.render(glfwHwnd);    
   }
   glfwTerminate();

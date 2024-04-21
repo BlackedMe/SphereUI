@@ -18,7 +18,7 @@ void GLFWHandler::init()
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
   //initalizes the window
-  window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Program", glfwGetPrimaryMonitor(), 0);
+  window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Program", 0, 0);
   if(!window)
   {
     glfwTerminate();
