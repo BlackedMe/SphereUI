@@ -4,8 +4,6 @@
 class Shape : public Renderable{
 protected:
   ClickBehavior *clickBehavior;
-
-  GLuint vao = 0;
 };
 
 class Rectangle : public Shape{

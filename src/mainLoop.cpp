@@ -1,5 +1,6 @@
 #include "mainLoop.hpp"
 #include "input.hpp"
+#include "renderable.hpp"
 #include "update.hpp"
 #include "shader.hpp"
 #include "renderer.hpp"
@@ -19,7 +20,9 @@ void Program::run()
   Shader shader;
   shader.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
 
-  Shape *rectangle = new Rectangle(0.5, 0.5);
+  Renderable::setProgram(shader.getProgram());
+  Shape *rectangle = new Rectangle(1.0, 0.5);
+  rectangle->setPos(glm::vec2(0.0f, 1.0f));
 
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))

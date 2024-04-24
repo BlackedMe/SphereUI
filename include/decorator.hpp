@@ -1,12 +1,14 @@
 #include "shape.hpp"
-class Decorator : Shape{
+class Decorator : public Shape{
 public:
+  Decorator(Shape *shape);
   void render() override;
 protected:
   Shape *shape;
 };
 
-class Hover : Decorator{
+class Hover : public Decorator{
 public:
+  Hover(Shape *shape);
   void render() override;
 };
