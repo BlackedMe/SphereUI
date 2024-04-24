@@ -3,12 +3,13 @@
 #include "update.hpp"
 #include "shader.hpp"
 #include "renderer.hpp"
+#include "shape.hpp"
 #include "glfwHandler.hpp"
 #include "GLFW/glfw3.h"
 
 void Program::run()
 {
-  GLFWHandler glfwHwnd(1280, 800); 
+  GLFWHandler glfwHwnd(400, 400); 
   glfwHwnd.init();
 
   //renderer
@@ -17,6 +18,8 @@ void Program::run()
   //shader
   Shader shader;
   shader.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
+
+  Shape *rectangle = new Rectangle(0.5, 0.5);
 
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))
@@ -30,6 +33,7 @@ void Program::run()
 
     shader.useProgram();
 
+    rectangle->render();
     renderer.render(glfwHwnd);    
   }
   glfwTerminate();
