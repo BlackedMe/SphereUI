@@ -16,9 +16,12 @@ void GLFWHandler::init()
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
   glfwWindowHint(GLFW_DECORATED, GLFW_TRUE);
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+}
 
-  //initalizes the window
-  window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Program", 0, 0);
+void GLFWHandler::createWindow(const std::string &name)
+{
+
+  window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, name.c_str(), 0, 0);
   if(!window)
   {
     glfwTerminate();

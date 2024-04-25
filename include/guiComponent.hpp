@@ -1,7 +1,7 @@
+#pragma once
 #include "renderable.hpp"
-class GUIComponent : Renderable{
+class GUIComponent : public Renderable{
 public:
-  virtual void add() = 0;
-  virtual void remove() = 0;
-  virtual GUIComponent getChild() = 0;
+  virtual void add(GUIComponent *component) {};
+  virtual void remove(GUIComponent *component) {};
 };

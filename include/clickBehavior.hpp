@@ -1,3 +1,4 @@
+#pragma once
 class ClickBehavior{
 public:
   virtual void click() = 0;

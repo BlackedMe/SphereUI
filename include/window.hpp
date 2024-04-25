@@ -1,9 +1,19 @@
 #include "guiComponent.hpp"
-#include <string>
-class Window : GUIComponent{
+#include "glfwHandler.hpp"
+#include "renderer.hpp"
+#include "program.hpp"
+#include <list>
+class Window : public GUIComponent{
 public: 
-  Window(const std::string &name);
+  Window(GLFWHandler *glfwHwnd, Program *program, Renderer *renderer);
   void render() override;
+  void add(GUIComponent *component) override;
+  void remove(GUIComponent *component) override;
 private:
-  std::string name;
+  std::list<GUIComponent *> children;
+  
+  //dependencies
+  GLFWHandler *glfwHwnd;
+  Program *program; 
+  Renderer *renderer;
 };
