@@ -1,11 +1,13 @@
 #pragma once
 #include "GLFW/glfw3.h"
+#include <string>
 class GLFWHandler{
 public:
   GLFWHandler(const uint32_t SCR_WIDTH, const uint32_t SCR_HEIGHT);
   //initalizes glfw
-  void init();
+  static void init();
 
+  void createWindow(const std::string &name);
   //returns window
   GLFWwindow *getWindow(); 
 

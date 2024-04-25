@@ -2,5 +2,5 @@
 
 int main()
 {
-  Program::run();
+  SphereUI::run();
 }

@@ -1,3 +1,3 @@
-namespace Program{
+namespace SphereUI{
   void run();
 };
