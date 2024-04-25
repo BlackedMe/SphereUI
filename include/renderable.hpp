@@ -4,13 +4,11 @@
 class Renderable{
 public:
   virtual void render() = 0;
-  static void setProgram(GLuint program);
+
   void setPos(const glm::vec2 &pos);
+  const glm::vec2 &getPos();
 protected:
+  //data
   GLuint vao = 0;
   glm::vec2 pos;
-
-  GLuint getProgram();
-private:
-  static GLuint program;
 };

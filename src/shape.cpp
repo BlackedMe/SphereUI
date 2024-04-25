@@ -4,8 +4,9 @@
 #include <glm/mat4x4.hpp>
 #include <glm/ext.hpp>
 
+Shape::Shape(Program *program) : program(program) {};
 
-Rectangle::Rectangle(float width, float height) : width(width), height(height)
+Rectangle::Rectangle(float width, float height, Program *program) : width(width), height(height), Shape(program)
 {
   float vertices[] = {
     -width/2, -height/2, 
@@ -37,7 +38,7 @@ void Rectangle::render()
 {
   glm::mat4x4 model(1.0f);
   model = glm::translate(model, glm::vec3(pos, 0.0f));
-  uniformMatrix4fv(getProgram(), "model", 1, GL_FALSE, &model[0][0]);
+  uniformMatrix4fv(program->get(), "model", 1, GL_FALSE, &model[0][0]);
   glBindVertexArray(vao); 
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

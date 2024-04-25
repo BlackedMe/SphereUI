@@ -3,12 +3,13 @@
 #include "renderable.hpp"
 #include "update.hpp"
 #include "shader.hpp"
+#include "program.hpp"
 #include "renderer.hpp"
 #include "shape.hpp"
 #include "glfwHandler.hpp"
 #include "GLFW/glfw3.h"
 
-void Program::run()
+void SphereUI::run()
 {
   GLFWHandler glfwHwnd(400, 400); 
   glfwHwnd.init();
@@ -16,14 +17,12 @@ void Program::run()
   //renderer
   Renderer renderer;
 
-  //shader
-  Shader shader;
-  shader.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
+  //program
+  Program program; 
+  program.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
 
-  Renderable::setProgram(shader.getProgram());
-  Shape *rectangle = new Rectangle(1.0, 0.5);
-  rectangle->setPos(glm::vec2(0.0f, 1.0f));
-
+  Shape *rectangle = new Rectangle(1.0, 0.5, &program);
+  rectangle->setPos(glm::vec2(0.0, 1.0));
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))
   {
@@ -34,7 +33,7 @@ void Program::run()
 
     UpdateHandler::update();
 
-    shader.useProgram();
+    program.use();
 
     rectangle->render();
     renderer.render(glfwHwnd);    
