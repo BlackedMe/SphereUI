@@ -1,6 +1,7 @@
 #pragma once
 #include "renderable.hpp"
 #include "transformable.hpp"
+#include "widget.hpp"
 
 enum Alignment{
   SP_BOTTOM = 0,
@@ -11,7 +12,7 @@ enum Alignment{
 
 class PanelComponent : public Renderable, public Transformable{
 public:
-  virtual void add(PanelComponent *component, Alignment alignment) = 0;
+  virtual void add(Widgets widget, Alignment alignment) = 0;
 
   virtual float getWidth() = 0;
   virtual float getHeight() = 0;

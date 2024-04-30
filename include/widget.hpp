@@ -2,6 +2,10 @@
 #include "boxModel.hpp"
 #include "shape.hpp"
 #include "transform.hpp"
+enum Widgets{
+  SP_BUTTON = 0,
+};
+
 class Widget : public Renderable, public Transformable{
 public:
   Widget(float width, float height, GLuint program);

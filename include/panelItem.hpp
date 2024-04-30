@@ -5,7 +5,7 @@ class PanelItem : public PanelComponent{
 public:
   PanelItem(Widget *widget);
 
-  void add(PanelComponent *component, Alignment alignment) override; 
+  void add(Widgets widget, Alignment alignment) override; 
   void render() override;
 
   void setPos(const glm::vec2 &pos) override;
