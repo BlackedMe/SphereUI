@@ -60,3 +60,8 @@ void Shader::useProgram()
 {
   glUseProgram(program);
 }
+
+GLuint Shader::getProgram()
+{
+  return program;
+}
