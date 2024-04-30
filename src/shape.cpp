@@ -1,23 +1,15 @@
 #include "shape.hpp"
-#include "glm/ext/matrix_float4x4.hpp"
-#include "uniform.hpp"
-#include <glm/mat4x4.hpp>
-#include <glm/ext.hpp>
-
-Shape::Shape(Program *program) : program(program) {};
-
-Rectangle::Rectangle(float width, float height, Program *program) : width(width), height(height), Shape(program)
+Rectangle::Rectangle(float width, float height) 
 {
   float vertices[] = {
-    -width/2, -height/2, 
+    -width/2, -height/2,
      width/2, -height/2,
      width/2,  height/2,
     -width/2,  height/2,
   };
 
   unsigned int indices[] = {0, 1, 2, 2, 3, 0};
-
-  GLuint vbo = 0, ebo = 0;
+  GLuint ebo = 0;
 
   glGenVertexArrays(1, &vao);
   glBindVertexArray(vao);
@@ -36,9 +28,6 @@ Rectangle::Rectangle(float width, float height, Program *program) : width(width)
 
 void Rectangle::render()
 {
-  glm::mat4x4 model(1.0f);
-  model = glm::translate(model, glm::vec3(pos, 0.0f));
-  uniformMatrix4fv(program->get(), "model", 1, GL_FALSE, &model[0][0]);
-  glBindVertexArray(vao); 
+  glBindVertexArray(vao);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

@@ -22,6 +22,7 @@ void GLFWHandler::createWindow(const std::string &name)
 {
 
   window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, name.c_str(), 0, 0);
+
   if(!window)
   {
     glfwTerminate();

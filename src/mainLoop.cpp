@@ -5,13 +5,12 @@
 #include "shader.hpp"
 #include "program.hpp"
 #include "renderer.hpp"
-#include "shape.hpp"
 #include "panel.hpp"
 #include "panelItem.hpp"
-#include "panelRow.hpp"
 #include "glfwHandler.hpp"
-#include "shapes.hpp"
-#include "GLFW/glfw3.h"
+#include "widget.hpp"
+#include "panelComponent.hpp"
+#include "panelContainer.hpp"
 
 void SphereUI::run()
 {
@@ -25,14 +24,23 @@ void SphereUI::run()
   //program
   Program program; 
   program.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
+  // Shape *shape = new Rectangle(0.5, 0.5);
+  Widget *widget = new Widget(0.5, 0.2, program.get());
+  widget->setPadding(0.0, 0.2);
+  Widget *widget2 = new Widget(0.2, 0.2, program.get());
+  widget2->setPadding(0.0, 0.2);
+  Widget *widget3 = new Widget(0.2, 0.2, program.get());
+  widget3->setPadding(0.0, 0.2);
 
-  Shape *rectangle = new Rectangle(0.2, 0.1, &program);
-  Shape *rectangle2 = new Rectangle(0.4, 1.0, &program);
-  
-  PanelComponent* panelRow_1 = new PanelRow;
-  PanelComponent* item_1 = new PanelItem(rectangle);
-  panelRow_1->add(item_1);
-  Panel *panel = new Panel(panelRow_1, &glfwHwnd, &program, &renderer);
+  PanelComponent *component = new PanelContainer(2.0, 2.0);
+  PanelComponent *item = new PanelItem(widget);
+  PanelComponent *item2 = new PanelItem(widget2);
+  PanelComponent *item3 = new PanelItem(widget3);
+  component->add(item, SP_TOP);
+  component->add(item2, SP_LEFT);
+
+  Panel *panel = new Panel(component, &glfwHwnd, &program, &renderer);
+
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))
   {
