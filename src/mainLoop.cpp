@@ -24,20 +24,17 @@ void SphereUI::run()
   //program
   Program program; 
   program.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
-  // Shape *shape = new Rectangle(0.5, 0.5);
-  Widget *widget = new Widget(0.5, 0.2, program.get());
-  widget->setPadding(0.0, 0.2);
+  Widget *widget = new Widget(0.2, 0.1, program.get());
   Widget *widget2 = new Widget(0.2, 0.2, program.get());
-  widget2->setPadding(0.0, 0.2);
   Widget *widget3 = new Widget(0.2, 0.2, program.get());
-  widget3->setPadding(0.0, 0.2);
+  // widget3->setPadding(0.0, 0.2);
 
   PanelComponent *component = new PanelContainer(2.0, 2.0);
   PanelComponent *item = new PanelItem(widget);
   PanelComponent *item2 = new PanelItem(widget2);
   PanelComponent *item3 = new PanelItem(widget3);
   component->add(item, SP_TOP);
-  component->add(item2, SP_LEFT);
+  // component->add(item2, SP_LEFT);
 
   Panel *panel = new Panel(component, &glfwHwnd, &program, &renderer);
 

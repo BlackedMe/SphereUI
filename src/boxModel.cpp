@@ -3,6 +3,7 @@
 void BoxModel::setContent(float width, float height)
 {
   content.setDimension(width, height);
+  updateBoxDimension();
 }
 
 void BoxModel::setPadding(float padX, float padY)
