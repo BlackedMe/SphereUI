@@ -2,12 +2,11 @@
 #include "dimension.hpp"
 #include "panelComponent.hpp"
 #include "transform.hpp"
-#include "widget.hpp"
 #include <vector>
 class PanelContainer : public PanelComponent{
 public:
   PanelContainer(float width, float height);
-  void add(Widgets widget, Alignment alignment) override;
+  void add(PanelComponent *component, Alignment alignment) override;
   void render() override;
 
   float getWidth() override;

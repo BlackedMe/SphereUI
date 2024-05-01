@@ -1,6 +1,5 @@
 #include "panelContainer.hpp"
 #include "panelComponent.hpp"
-#include "widget.hpp"
 #include "containerHelper.hpp"
 
 PanelContainer::PanelContainer(float width, float height)
@@ -12,9 +11,8 @@ PanelContainer::PanelContainer(float width, float height)
   transform = new Transform;
 }
 
-void PanelContainer::add(Widgets widget, Alignment alignment)
+void PanelContainer::add(PanelComponent *component, Alignment alignment)
 {
-  PanelComponent *component = createWidget(widget);
   ContainerHelper *helper;
 
   if(alignment == SP_BOTTOM) {

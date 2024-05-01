@@ -1,6 +1,5 @@
 #include "mainLoop.hpp"
 #include "input.hpp"
-#include "panelComponent.hpp"
 #include "update.hpp"
 #include "shader.hpp"
 #include "program.hpp"
@@ -8,9 +7,6 @@
 #include "panel.hpp"
 #include "panelItem.hpp"
 #include "glfwHandler.hpp"
-#include "widget.hpp"
-#include "panelComponent.hpp"
-#include "panelContainer.hpp"
 
 void SphereUI::run()
 {
@@ -24,19 +20,11 @@ void SphereUI::run()
   //program
   Program program; 
   program.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
-  Widget *widget = new Widget(0.2, 0.1, program.get());
-  Widget *widget2 = new Widget(0.2, 0.2, program.get());
-  Widget *widget3 = new Widget(0.2, 0.2, program.get());
-  // widget3->setPadding(0.0, 0.2);
 
-  PanelComponent *component = new PanelContainer(2.0, 2.0);
-  PanelComponent *item = new PanelItem(widget);
-  PanelComponent *item2 = new PanelItem(widget2);
-  PanelComponent *item3 = new PanelItem(widget3);
-  component->add(item, SP_TOP);
-  // component->add(item2, SP_LEFT);
-
-  Panel *panel = new Panel(component, &glfwHwnd, &program, &renderer);
+  Panel *panel = new Panel(&glfwHwnd, &program, &renderer);
+  panel->addButton();
+  panel->addButton(SP_LEFT);
+  panel->addButton(SP_BOTTOM);
 
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))
