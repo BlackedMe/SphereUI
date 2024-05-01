@@ -22,9 +22,9 @@ void SphereUI::run()
   program.init("../assets/shader/vShader.glsl", "../assets/shader/fShader.glsl", glfwHwnd.aspectRatio);
 
   Panel *panel = new Panel(&glfwHwnd, &program, &renderer);
-  panel->addButton();
-  panel->addButton(SP_LEFT);
-  panel->addButton(SP_BOTTOM);
+  panel->addButton({.padX = 0.1, .borderX = 0.05, .borderY = 0.05});
+  panel->addButton({.padY = 0.2});
+  panel->addButton({.padY = 0.2});
 
   //game Loop
   while(!glfwWindowShouldClose(glfwHwnd.getWindow()))

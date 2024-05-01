@@ -24,9 +24,20 @@ void Panel::render()
   renderer->render(*glfwHwnd);
 }
 
-void Panel::addButton(Alignment alignment, float width, float height)
+void Panel::addButton(const PanelParameters &params)
 {
-  Widget *widget = new Widget(0.2, 0.1, SP_RECTANGLE, program->get());
+  Widget *widget = new Widget(params.width, params.height, SP_RECTANGLE, program->get());
+
+  commonLogic(widget, params);
+
   PanelItem *item = new PanelItem(widget);
-  panel->add(item, alignment); 
+
+  panel->add(item, params.alignment); 
+}
+
+void Panel::commonLogic(Widget *widget, const PanelParameters &params)
+{
+  widget->setPadding(params.padX, params.padY);
+  widget->setBorder(params.borderX, params.borderY);
+  widget->setMargin(params.marginX, params.marginY);
 }

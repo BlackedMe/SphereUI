@@ -21,8 +21,13 @@ void Widget::render()
   uniformMatrix4fv(program, "model", 1, GL_FALSE, &model[0][0]);
 
   glUniform4f(glGetUniformLocation(program, "color"), 1.0f, 0.0f, 0.0f, 1.0f);
-  Shape *bound = new Rectangle(bm->getBoxWidth(), bm->getBoxHeight());
-  bound->render();
+  Shape *border = new Rectangle(bm->getBorderWidth(), bm->getBorderHeight());
+  border->render();
+
+  glUniform4f(glGetUniformLocation(program, "color"), 0.0f, 0.0f, 1.0f, 1.0f);
+  Shape *padding = new Rectangle(bm->getPaddingWidth(), bm->getPaddingHeight());
+  padding->render();
+
   glUniform4f(glGetUniformLocation(program, "color"), 1.0f, 1.0f, 1.0f, 1.0f);
   shape->render();
 }
@@ -45,6 +50,16 @@ void Widget::setContent(float width, float height)
 void Widget::setPadding(float padX, float padY)
 {
   bm->setPadding(padX, padY);
+}
+
+void Widget::setBorder(float borderX, float borderY)
+{
+  bm->setBorder(borderX, borderY);
+}
+
+void Widget::setMargin(float marginX, float marginY)
+{
+  bm->setMargin(marginX, marginY);
 }
 
 float Widget::getBoxWidth()

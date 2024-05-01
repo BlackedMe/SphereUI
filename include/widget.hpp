@@ -14,6 +14,8 @@ public:
 
   void setContent(float width, float height);
   void setPadding(float padX, float padY);
+  void setBorder(float borderX, float borderY);
+  void setMargin(float marginX, float marginY);
 
   float getBoxWidth();
   float getBoxHeight();
