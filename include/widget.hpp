@@ -8,7 +8,7 @@ enum Widgets{
 
 class Widget : public Renderable, public Transformable{
 public:
-  Widget(float width, float height, GLuint program);
+  Widget(float width, float height, Shapes id, GLuint program);
   void render() override;
 
   //delegations

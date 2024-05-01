@@ -4,8 +4,8 @@
 #include <glm/mat4x4.hpp>
 #include <glm/ext.hpp>
 
-Widget::Widget(float width, float height, GLuint program) {
-  shape = new Rectangle(width, height);
+Widget::Widget(float width, float height, Shapes id, GLuint program) {
+  shape = Shape::create(id, width, height);
 
   bm = new BoxModel;
   setContent(width, height);

@@ -1,4 +1,14 @@
 #include "shape.hpp"
+
+Shape *Shape::create(Shapes id, float width, float height)
+{
+  if(id == SP_RECTANGLE)
+  {
+    return new Rectangle(width, height);
+  }
+  return nullptr;
+}
+
 Rectangle::Rectangle(float width, float height) 
 {
   float vertices[] = {
