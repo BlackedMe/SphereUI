@@ -1,5 +1,5 @@
 #include "panelComponent.hpp"
-#include "widget.hpp"
+#include "widgets/widget.hpp"
 
 class PanelItem : public PanelComponent{
 public:

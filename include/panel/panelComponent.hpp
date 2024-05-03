@@ -1,6 +1,6 @@
 #pragma once
 #include "renderable.hpp"
-#include "transformable.hpp"
+#include "behaviors/transform/transformable.hpp"
 
 enum Alignment{
   SP_BOTTOM = 0,

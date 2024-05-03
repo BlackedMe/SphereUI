@@ -3,7 +3,7 @@
 #include "program.hpp"
 #include "glfwHandler.hpp"
 #include "renderer.hpp"
-#include "widget.hpp"
+#include "widgets/widget.hpp"
 
 struct PanelParameters{
   Alignment alignment = SP_TOP;
@@ -24,5 +24,5 @@ private:
   Program *program; 
   Renderer *renderer;
 
-  void commonLogic(Widget *widget, const PanelParameters &params);
+  void additionLogic(Widget *widget, const PanelParameters &params);
 };

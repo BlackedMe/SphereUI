@@ -1,6 +1,7 @@
-#include "widget.hpp"
+#include "widgets/widget.hpp"
 #include "shape.hpp"
 #include "uniform.hpp"
+#include "collision.hpp"
 #include <glm/mat4x4.hpp>
 #include <glm/ext.hpp>
 
@@ -70,4 +71,16 @@ float Widget::getBoxWidth()
 float Widget::getBoxHeight()
 {
   return bm->getBoxHeight();
+}
+
+void Widget::update()
+{
+  AABB aabb;
+  aabb.min = transform->getPos() - glm::vec2(bm->getBoxWidth(), bm->getBoxHeight());
+  aabb.max = -aabb.min;
+
+  if(intersect(aabb, cursorPos))
+  {
+    updateRequired();
+  }
 }

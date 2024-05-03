@@ -1,7 +1,9 @@
 #pragma once
 #include "boxModel.hpp"
 #include "shape.hpp"
-#include "transform.hpp"
+#include "behaviors/transform/transform.hpp"
+#include "behaviors/click/clickBehavior.hpp"
+#include "aabb.hpp"
 
 class Widget : public Renderable, public Transformable{
 public:
@@ -19,10 +21,17 @@ public:
 
   float getBoxWidth();
   float getBoxHeight();
-private:
+
+  void update();
+protected:
+  //components
   BoxModel *bm;
   Shape *shape;
   Transform *transform;
-  //dependency
+  ClickBehavior *clickBehavior;
+  //dependencies
   GLuint program;
+  glm::vec2 cursorPos;
+
+  virtual void updateRequired() = 0;
 };

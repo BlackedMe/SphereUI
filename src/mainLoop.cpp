@@ -4,7 +4,7 @@
 #include "shader.hpp"
 #include "program.hpp"
 #include "renderer.hpp"
-#include "panel.hpp"
+#include "panel/panel.hpp"
 #include "panelItem.hpp"
 #include "glfwHandler.hpp"
 
