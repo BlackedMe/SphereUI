@@ -4,4 +4,13 @@
 void InputHandler::processInput()
 {
   glfwPollEvents();
+
+  if(glfwGetKey(window, GLFW_MOUSE_BUTTON_1))
+  {
+    mouseButton1->notify();
+  }
+}
+
+void InputHandler::update()
+{
 }
