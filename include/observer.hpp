@@ -1,5 +1,7 @@
 #pragma once
+class MouseButton1;
+
 class Observer{
 public:
-  virtual void update() = 0;
+  virtual void update(MouseButton1 *mouseButton1) = 0;
 };

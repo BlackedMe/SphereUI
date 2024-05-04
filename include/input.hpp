@@ -2,7 +2,7 @@
 #include "keyHandler.hpp"
 #include "event.hpp"
 
-class InputHandler : Event{
+class InputHandler{
 public:
   void processInput();
 private:

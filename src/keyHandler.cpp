@@ -10,6 +10,6 @@ void MouseButton1::notify()
 {
   for(Observer *n : observers)
   {
-    n->update();
+    n->update(this);
   }
 }
