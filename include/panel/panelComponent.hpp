@@ -1,6 +1,7 @@
 #pragma once
+#include "boxModel.hpp"
 #include "renderable.hpp"
-#include "behaviors/transform/transformable.hpp"
+#include "behaviors/transform/transform.hpp"
 
 enum Alignment{
   SP_BOTTOM = 0,
@@ -9,11 +10,9 @@ enum Alignment{
   SP_LEFT = 3,
 };
 
-class PanelComponent : public Renderable, public Transformable{
+class PanelComponent : public Renderable{
 public:
   virtual void add(PanelComponent *component, Alignment alignment) = 0;
-
-  virtual float getWidth() = 0;
-  virtual float getHeight() = 0;
-  virtual void setDimension(float width, float height) = 0; 
+  virtual BoxModel &geometry() = 0;
+  virtual Transform &transform() = 0;
 };

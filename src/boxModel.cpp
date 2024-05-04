@@ -3,50 +3,42 @@
 void BoxModel::setContent(float width, float height)
 {
   content.setDimension(width, height);
+  setPadding(padding.getDimension().x, padding.getDimension().y);
 }
 
 void BoxModel::setPadding(float padX, float padY)
 {
-  padding.setDimension(content.getWidth() + 2 * padX, content.getHeight() + 2 * padY);
+  padding.setDimension(content.getDimension().x + 2 * padX, content.getDimension().y + 2 * padY);
+  setBorder(border.getDimension().x, border.getDimension().y);
 }
 
 void BoxModel::setBorder(float borderX, float borderY)
 {
-  border.setDimension(padding.getWidth() + 2 * borderX, padding.getHeight() + 2 * borderY);
+  border.setDimension(padding.getDimension().x + 2 * borderX, padding.getDimension().y + 2 * borderY);
+  setMargin(margin.getDimension().x, margin.getDimension().y);
 }
 
 void BoxModel::setMargin(float marginX, float marginY)
 {
-  margin.setDimension(border.getWidth() + 2 * marginX, border.getHeight() + 2 * marginY);
+  margin.setDimension(border.getDimension().x + 2 * marginX, border.getDimension().y + 2 * marginY);
 }
 
-float BoxModel::getPaddingWidth()
+const glm::vec2 &BoxModel::getContent()
 {
-  return padding.getWidth();
+  return content.getDimension();
 }
 
-float BoxModel::getPaddingHeight()
+const glm::vec2 &BoxModel::getPadding()
 {
-  return padding.getHeight();
+  return padding.getDimension();
 }
 
-float BoxModel::getBorderWidth()
+const glm::vec2 &BoxModel::getBorder()
 {
-  return border.getWidth();
+  return border.getDimension();
 }
 
-float BoxModel::getBorderHeight()
+const glm::vec2 &BoxModel::getMargin()
 {
-  return border.getHeight();
+  return margin.getDimension();
 }
-
-float BoxModel::getBoxWidth()
-{
-  return margin.getWidth();
-}
-
-float BoxModel::getBoxHeight()
-{
-  return margin.getHeight();
-}
-

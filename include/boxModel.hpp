@@ -8,14 +8,10 @@ public:
   void setBorder(float borderX, float borderY);
   void setMargin(float marginX, float marginY);
 
-  float getPaddingWidth();
-  float getPaddingHeight();
-
-  float getBorderWidth();
-  float getBorderHeight();
-  
-  float getBoxWidth();
-  float getBoxHeight();
+  const glm::vec2 &getContent();
+  const glm::vec2 &getPadding();
+  const glm::vec2 &getBorder();
+  const glm::vec2 &getMargin();
   
 private:
   Dimension content;

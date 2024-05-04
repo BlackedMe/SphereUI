@@ -12,27 +12,12 @@ void PanelItem::render()
   widget->render();
 }
 
-void PanelItem::setPos(const glm::vec2 &pos) 
+BoxModel &PanelItem::geometry()
 {
-  widget->setPos(pos);
+  return widget->geometry();
 }
 
-const glm::vec2 &PanelItem::getPos()
+Transform &PanelItem::transform()
 {
-  return widget->getPos();
-}
-
-float PanelItem::getWidth()
-{
-  return widget->getBoxWidth();
-}
-
-float PanelItem::getHeight()
-{
-  return widget->getBoxHeight();
-}
-
-void PanelItem::setDimension(float width, float height)
-{
-
+  return widget->transform();
 }

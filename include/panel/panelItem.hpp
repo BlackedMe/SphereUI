@@ -7,13 +7,8 @@ public:
 
   void add(PanelComponent *component, Alignment alignment) override; 
   void render() override;
-
-  void setPos(const glm::vec2 &pos) override;
-  const glm::vec2 &getPos() override;
-
-  float getWidth() override;
-  float getHeight() override;
-  void setDimension(float width, float height) override;
+  BoxModel &geometry() override;
+  Transform &transform() override;
 private:
   Widget *widget;
 };

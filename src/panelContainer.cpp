@@ -6,9 +6,7 @@ PanelContainer::PanelContainer(float width, float height)
 {
   current = this;
 
-  dimension = new Dimension(width, height);
-
-  transform = new Transform;
+  bm.setContent(width, height);
 }
 
 void PanelContainer::add(PanelComponent *component, Alignment alignment)
@@ -32,17 +30,17 @@ void PanelContainer::add(PanelComponent *component, Alignment alignment)
   PanelContainer *secondContainer;
   if(alignment == SP_TOP || alignment == SP_BOTTOM)
   {
-    firstContainer = new PanelContainer(current->getWidth(), component->getHeight());
-    secondContainer = new PanelContainer(current->getWidth(), current->getHeight() - component->getHeight());
+    firstContainer = new PanelContainer(current->geometry().getMargin().x, component->geometry().getMargin().y);
+    secondContainer = new PanelContainer(current->geometry().getMargin().x, current->geometry().getMargin().y - component->geometry().getMargin().y);
   }
   if(alignment == SP_LEFT || alignment == SP_RIGHT)
   {
-    firstContainer = new PanelContainer(component->getWidth(), current->getHeight());
-    secondContainer = new PanelContainer(current->getWidth() - component->getWidth(), current->getHeight());
+    firstContainer = new PanelContainer(component->geometry().getMargin().x, current->geometry().getMargin().y);
+    secondContainer = new PanelContainer(current->geometry().getMargin().x - component->geometry().getMargin().x, current->geometry().getMargin().y);
   }
 
   helper->align(current, firstContainer);
-  component->setPos(firstContainer->getPos());
+  component->transform().setPos(firstContainer->transform().getPos());
   helper->containerPushBack(firstContainer, component);
   helper->containerPushBack(current, firstContainer);
   
@@ -72,28 +70,12 @@ void PanelContainer::render()
   }
 }
 
-float PanelContainer::getWidth()
+BoxModel &PanelContainer::geometry()
 {
-  return dimension->getWidth();
+  return bm;
 }
 
-float PanelContainer::getHeight()
+Transform &PanelContainer::transform()
 {
-  return dimension->getHeight();
+  return transformation;
 }
-
-void PanelContainer::setPos(const glm::vec2 &pos) 
-{
-  transform->setPos(pos);
-}
-
-void PanelContainer::setDimension(float width, float height)
-{
-  dimension->setDimension(width, height);
-}
-
-const glm::vec2 &PanelContainer::getPos()
-{
-  return transform->getPos();
-}
-

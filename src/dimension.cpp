@@ -2,20 +2,18 @@
 
 Dimension::Dimension() {};
 
-Dimension::Dimension(float width, float height) : width(width), height(height) {};
+Dimension::Dimension(float width, float height) {
+  dimension.x = width;
+  dimension.y = height;
+};
 
-float Dimension::getWidth()
+const glm::vec2 &Dimension::getDimension()
 {
-  return width;
-}
-
-float Dimension::getHeight()
-{
-  return height;
+  return dimension;
 }
 
 void Dimension::setDimension(float width, float height)
 {
-  this->width = width;
-  this->height = height;
+  dimension.x = width;
+  dimension.y = height;
 }

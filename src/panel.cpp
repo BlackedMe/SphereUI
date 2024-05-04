@@ -37,7 +37,7 @@ void Panel::addButton(const PanelParameters &params)
 
 void Panel::additionLogic(Widget *widget, const PanelParameters &params)
 {
-  widget->setPadding(params.padX, params.padY);
-  widget->setBorder(params.borderX, params.borderY);
-  widget->setMargin(params.marginX, params.marginY);
+  widget->geometry().setPadding(params.padX, params.padY);
+  widget->geometry().setBorder(params.borderX, params.borderY);
+  widget->geometry().setMargin(params.marginX, params.marginY);
 }

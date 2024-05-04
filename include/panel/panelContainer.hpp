@@ -1,5 +1,4 @@
 #pragma once
-#include "dimension.hpp"
 #include "panelComponent.hpp"
 #include "behaviors/transform/transform.hpp"
 #include <vector>
@@ -8,14 +7,8 @@ public:
   PanelContainer(float width, float height);
   void add(PanelComponent *component, Alignment alignment) override;
   void render() override;
-
-  float getWidth() override;
-  float getHeight() override;
-  void setDimension(float width, float height) override;
-
-  void setPos(const glm::vec2 &pos) override;
-  const glm::vec2 &getPos() override;
-  
+  BoxModel &geometry() override;
+  Transform &transform() override;
 private:
   std::vector<PanelComponent *> bottom;
   std::vector<PanelComponent *> right;
@@ -23,8 +16,8 @@ private:
   std::vector<PanelComponent *> left;
 
   PanelContainer *current;
-  Dimension *dimension;
-  Transform *transform;
+  BoxModel bm;
+  Transform transformation;
 
   friend class B_ContainerHelper; 
   friend class R_ContainerHelper;

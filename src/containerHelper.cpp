@@ -1,5 +1,9 @@
 #include "panel/containerHelper.hpp"
 #include "panel/panelContainer.hpp"
+#define posX(item) item->transform().getPos().x
+#define posY(item) item->transform().getPos().y
+#define width(item) item->geometry().getMargin().x
+#define height(item) item->geometry().getMargin().y
 
 void ContainerHelper::align(PanelContainer *container, PanelComponent *component)
 {
@@ -19,12 +23,12 @@ void B_ContainerHelper::containerPushBack(PanelContainer *container, PanelCompon
 
 void B_ContainerHelper::initalizeComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->getPos().x, container->getPos().y - container->getHeight()/2 + component->getHeight()/2));
+  component->transform().setPos(glm::vec2(posX(container), posY(container) + (height(component) - height(container))/2));
 }
 
 void B_ContainerHelper::setComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->bottom.back()->getPos().x, container->bottom.back()->getPos().y + container->bottom.back()->getHeight()/2 + component->getHeight()/2));
+  component->transform().setPos(glm::vec2(posX(container->bottom.back()), posY(container->bottom.back()) + (height(component) + height(container->bottom.back()))/2));
 }
 
 bool B_ContainerHelper::isContainerEmpty(PanelContainer *container, PanelComponent *component)
@@ -39,12 +43,12 @@ void R_ContainerHelper::containerPushBack(PanelContainer *container, PanelCompon
 
 void R_ContainerHelper::initalizeComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->getPos().x + container->getWidth()/2 - component->getWidth()/2, container->getPos().y));
+  component->transform().setPos(glm::vec2(posX(container) + width(container)/2 - width(component)/2, posY(container)));
 }
 
 void R_ContainerHelper::setComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->right.back()->getPos().x - container->right.back()->getWidth()/2 - component->getWidth()/2, container->right.back()->getPos().y));
+  component->transform().setPos(glm::vec2(posX(container->right.back()) - width(container->right.back())/2 - width(component)/2, posY(container->right.back())));
 }
 
 bool R_ContainerHelper::isContainerEmpty(PanelContainer *container, PanelComponent *component)
@@ -59,12 +63,12 @@ void T_ContainerHelper::containerPushBack(PanelContainer *container, PanelCompon
 
 void T_ContainerHelper::initalizeComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->getPos().x, container->getPos().y + container->getHeight()/2 - component->getHeight()/2));
+  component->transform().setPos(glm::vec2(posX(container), posY(container) + height(container)/2 - height(component)/2));
 }
 
 void T_ContainerHelper::setComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->top.back()->getPos().x, container->top.back()->getPos().y - container->top.back()->getHeight()/2 - component->getHeight()/2));
+  component->transform().setPos(glm::vec2(posX(container->top.back()), posY(container->top.back()) - height(container->top.back())/2 - height(component)/2));
 }
 
 bool T_ContainerHelper::isContainerEmpty(PanelContainer *container, PanelComponent *component)
@@ -79,12 +83,12 @@ void L_ContainerHelper::containerPushBack(PanelContainer *container, PanelCompon
 
 void L_ContainerHelper::initalizeComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->getPos().x - container->getWidth()/2 + component->getWidth()/2, container->getPos().y));
+  component->transform().setPos(glm::vec2(posX(container) - width(container)/2 + width(component)/2, posY(container)));
 }
 
 void L_ContainerHelper::setComponentPos(PanelContainer *container, PanelComponent *component)
 {
-  component->setPos(glm::vec2(container->left.back()->getPos().x + container->left.back()->getWidth()/2 + component->getWidth()/2, container->left.back()->getPos().y));
+  component->transform().setPos(glm::vec2(posX(container->left.back()) + width(container->left.back())/2 + width(component)/2, posY(container->left.back())));
 }
 
 bool L_ContainerHelper::isContainerEmpty(PanelContainer *container, PanelComponent *component)
