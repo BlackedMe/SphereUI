@@ -1,6 +1,6 @@
-#include "panelContainer.hpp"
-#include "panelComponent.hpp"
-#include "containerHelper.hpp"
+#include "panel/panelContainer.hpp"
+#include "panel/panelComponent.hpp"
+#include "panel/containerHelper.hpp"
 
 PanelContainer::PanelContainer(float width, float height)
 {

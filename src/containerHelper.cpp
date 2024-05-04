@@ -1,5 +1,5 @@
-#include "containerHelper.hpp"
-#include "panelContainer.hpp"
+#include "panel/containerHelper.hpp"
+#include "panel/panelContainer.hpp"
 
 void ContainerHelper::align(PanelContainer *container, PanelComponent *component)
 {

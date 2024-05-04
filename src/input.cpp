@@ -10,7 +10,3 @@ void InputHandler::processInput()
     mouseButton1->notify();
   }
 }
-
-void InputHandler::update()
-{
-}
