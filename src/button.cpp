@@ -9,3 +9,8 @@ void Button::updateRequired()
 {
    
 }
+
+void Button::update(MouseButton1 *mouseButton1)
+{
+  isClicked = mouseButton1->getClickStatus();
+}

@@ -9,4 +9,8 @@ public:
   void notify() override;
 
   std::vector<Observer *> observers;
+  
+  bool getClickStatus();
+private:
+  bool isClicked = false;
 };

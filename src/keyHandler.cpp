@@ -13,3 +13,9 @@ void MouseButton1::notify()
     n->update(this);
   }
 }
+
+bool MouseButton1::getClickStatus()
+{
+  return isClicked;
+}
+

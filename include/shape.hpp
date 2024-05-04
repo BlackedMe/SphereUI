@@ -10,7 +10,7 @@ class Shape : public Renderable{
 public:
   static Shape *create(Shapes id, float width, float height);
 protected:
-  GLuint vao, vbo;
+  GLuint vao;
 };
 
 class Rectangle : public Shape{
