@@ -1,4 +1,4 @@
-#include "panelItem.hpp"
+#include "panel/panelItem.hpp"
 
 PanelItem::PanelItem(Widget *widget) : widget(widget) {};
 

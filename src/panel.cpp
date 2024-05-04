@@ -1,8 +1,8 @@
-#include "panel.hpp"
-#include "panelComponent.hpp"
-#include "panelContainer.hpp"
-#include "panelItem.hpp"
-#include "widgets/widget.hpp"
+#include "panel/panel.hpp"
+#include "panel/panelComponent.hpp"
+#include "panel/panelContainer.hpp"
+#include "panel/panelItem.hpp"
+#include "widgets/button.hpp"
 
 Panel::Panel(GLFWHandler *glfwHwnd, Program *program, Renderer *renderer) : glfwHwnd(glfwHwnd), program(program), renderer(renderer) {
   panel = new PanelContainer(2.0, 2.0);
@@ -26,7 +26,7 @@ void Panel::render()
 
 void Panel::addButton(const PanelParameters &params)
 {
-  Widget *widget = new Widget(params.width, params.height, SP_RECTANGLE, program->get());
+  Widget *widget = new Button(params.width, params.height, SP_RECTANGLE, program->get());
 
   additionLogic(widget, params);
 

@@ -1,12 +1,8 @@
 #include "mainLoop.hpp"
-#include "input.hpp"
-#include "update.hpp"
-#include "shader.hpp"
-#include "program.hpp"
-#include "renderer.hpp"
 #include "panel/panel.hpp"
-#include "panelItem.hpp"
 #include "glfwHandler.hpp"
+#include "renderer.hpp"
+#include "program.hpp"
 
 void SphereUI::run()
 {
