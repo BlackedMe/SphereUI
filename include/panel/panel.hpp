@@ -2,6 +2,7 @@
 #include "renderable.hpp"
 #include "program.hpp"
 #include "glfwHandler.hpp"
+#include "input.hpp"
 #include "renderer.hpp"
 #include "widgets/widget.hpp"
 
@@ -12,17 +13,22 @@ struct PanelParameters{
 }; 
 class Panel : public Renderable{
 public: 
-  Panel(GLFWHandler *glfwHwnd, Program *program, Renderer *renderer);
+  Panel(const uint32_t SCR_WIDTH, const uint32_t SCR_HEIGHT, const std::string &name);
 
   void render() override;
 
+  void initProgram(const char* vShaderSrc, const char* fShaderSrc);
+
   void addButton(const PanelParameters &params = PanelParameters());
+
+  bool isAlive = true;
 private:
   //dependencies
   PanelComponent *panel;
-  GLFWHandler *glfwHwnd;
-  Program *program; 
-  Renderer *renderer;
+  GLFWHandler glfwHwnd;
+  Program program; 
+  InputHandler inputHandler;
+  Renderer renderer;
 
   void additionLogic(Widget *widget, const PanelParameters &params);
 };

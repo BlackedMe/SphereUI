@@ -1,14 +1,14 @@
 #include "keyHandler.hpp"
-#include "observer.hpp"
+#include "events/listener.hpp"
 
-void MouseButton1::attach(Observer *observer)
+void MouseButton1::attach(Listener *listener)
 {
-  observers.push_back(observer);
+  listeners.push_back(listener);
 }
 
 void MouseButton1::notify()
 {
-  for(Observer *n : observers)
+  for(Listener *n : listeners)
   {
     n->update(this);
   }

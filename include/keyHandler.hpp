@@ -1,14 +1,14 @@
-#include "event.hpp"
-#include "observer.hpp"
+#include "events/event.hpp"
+#include "events/listener.hpp"
 #include <vector>
 
 class MouseButton1 : public Event{
 public:
-  void attach(Observer *observer) override;
+  void attach(Listener *listener) override;
   // void detach(Observer *observer) override;
   void notify() override;
 
-  std::vector<Observer *> observers;
+  std::vector<Listener *> listeners;
   
   bool getClickStatus();
 private:

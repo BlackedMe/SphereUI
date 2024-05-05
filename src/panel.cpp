@@ -4,33 +4,48 @@
 #include "panel/panelItem.hpp"
 #include "widgets/button.hpp"
 
-Panel::Panel(GLFWHandler *glfwHwnd, Program *program, Renderer *renderer) : glfwHwnd(glfwHwnd), program(program), renderer(renderer) {
+Panel::Panel(const uint32_t SCR_WIDTH, const uint32_t SCR_HEIGHT, const std::string &name) : glfwHwnd(SCR_WIDTH, SCR_HEIGHT){
+  glfwHwnd.createWindow(name);
+  inputHandler.setWindow(glfwHwnd.getWindow());
   panel = new PanelContainer(2.0, 2.0);
 };
 
 void Panel::render()
 {
-  glfwMakeContextCurrent(glfwHwnd->getWindow());
+  static float currentTime = glfwGetTime();
+
+  glfwMakeContextCurrent(glfwHwnd.getWindow());
 
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);  
   
-  glfwPollEvents();
+  float dt = glfwGetTime() - currentTime;
+  currentTime = glfwGetTime();
 
-  program->use();
+  inputHandler.processInput(dt);
+
+  program.use();
   
   panel->render();
 
-  renderer->render(*glfwHwnd);
+  renderer.render(glfwHwnd);
+}
+
+void Panel::initProgram(const char* vShaderSrc, const char* fShaderSrc)
+{
+  program.init(vShaderSrc, fShaderSrc, glfwHwnd.aspectRatio);
 }
 
 void Panel::addButton(const PanelParameters &params)
 {
-  Widget *widget = new Button(params.width, params.height, SP_RECTANGLE, program->get());
+  Button *button = new Button(params.width, params.height, SP_RECTANGLE, program.get());
+  inputHandler.mouseButton1.attach(button);
+  inputHandler.mouse.attach(button);
 
-  additionLogic(widget, params);
 
-  PanelItem *item = new PanelItem(widget);
+  additionLogic(button, params);
+
+  PanelItem *item = new PanelItem(button);
 
   panel->add(item, params.alignment); 
 }
